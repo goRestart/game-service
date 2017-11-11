@@ -8,6 +8,9 @@ extension Assembly {
   }
   
   private var gameController: GameController {
-    return GameController()
+    return GameController(
+      getAllGameConsoles: getAllGameConsoles,
+      viewMapper: gameConsoleViewMapper
+    )
   }
 }
