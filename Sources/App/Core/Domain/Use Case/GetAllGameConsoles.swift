@@ -1,6 +1,6 @@
 import Foundation
 
-struct GetGameConsoles {
+struct GetAllGameConsoles {
   
   private let gameConsoleRepository: GameConsoleRepository
   
