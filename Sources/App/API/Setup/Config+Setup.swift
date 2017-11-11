@@ -19,6 +19,8 @@ extension Config {
   // MARK: - Preparations
   
   private func setupPreparations() throws {
-    preparations = []
+    preparations = [
+      GameConsoleDiskModel.self
+    ]
   }
 }
