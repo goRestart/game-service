@@ -3,12 +3,12 @@ import CoreService
 extension Assembly {
   var gameRouteCollection: GameRouteCollection {
     return GameRouteCollection(
-      gameController: gameController
+      gameConsoleController: gameConsoleController
     )
   }
   
-  private var gameController: GameController {
-    return GameController(
+  private var gameConsoleController: GameConsoleController {
+    return GameConsoleController(
       getAllGameConsoles: getAllGameConsoles,
       viewMapper: gameConsoleViewMapper
     )

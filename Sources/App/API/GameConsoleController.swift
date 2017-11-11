@@ -1,6 +1,6 @@
 import HTTP
 
-struct GameController {
+struct GameConsoleController {
   
   private let getAllGameConsoles: GetAllGameConsoles
   private let viewMapper: GameConsoleViewMapper
@@ -12,7 +12,7 @@ struct GameController {
     self.viewMapper = viewMapper
   }
   
-  func gameConsoleList() throws -> ResponseRepresentable {
+  func getAll() throws -> ResponseRepresentable {
     return try viewMapper.map(
       elements: try getAllGameConsoles.execute()
     ).makeJSON()

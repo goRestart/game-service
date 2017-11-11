@@ -6,15 +6,15 @@ private struct Endpoint {
 
 struct GameRouteCollection: RouteCollection {
   
-  private let gameController: GameController
+  private let gameConsoleController: GameConsoleController
   
-  init(gameController: GameController) {
-    self.gameController = gameController
+  init(gameConsoleController: GameConsoleController) {
+    self.gameConsoleController = gameConsoleController
   }
   
   func build(_ builder: RouteBuilder) throws {
     builder.get(Endpoint.gameConsole) { _ in
-      return try self.gameController.gameConsoleList()
+      return try self.gameConsoleController.getAll()
     }
   }
 }
