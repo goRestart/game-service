@@ -6,9 +6,15 @@ private struct Endpoint {
 
 struct GameRouteCollection: RouteCollection {
   
+  private let gameController: GameController
+  
+  init(gameController: GameController) {
+    self.gameController = gameController
+  }
+  
   func build(_ builder: RouteBuilder) throws {
     builder.get(Endpoint.gameConsole) { _ in
-      return "ok"
+      return try self.gameController.gameConsoleList()
     }
   }
 }
