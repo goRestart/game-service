@@ -20,7 +20,18 @@ extension Config {
   
   private func setupPreparations() throws {
     preparations = [
-      GameConsoleDiskModel.self
+      GameConsoleDiskModel.self,
+      GenreDiskModel.self,
+      ManufacturerDiskModel.self,
+      AlternativeNameDiskModel.self,
+      GameDiskModel.self,
+      
+      /* Relations - Pivots */
+      
+      Pivot<GameDiskModel, AlternativeNameDiskModel>.self,
+      Pivot<GameDiskModel, GameConsoleDiskModel>.self,
+      Pivot<GameDiskModel, GenreDiskModel>.self
     ]
   }
 }
+
