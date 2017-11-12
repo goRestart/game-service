@@ -7,7 +7,7 @@ struct SearchGamesTask {
       .makeQuery()
     
     queryBuilder = try queryBuilder.filter(
-      GameDiskModel.Keys.name, .contains, query.query.lowercased()
+      GameDiskModel.Keys.name, like: query.query
     )
     return try queryBuilder.all()
   }
