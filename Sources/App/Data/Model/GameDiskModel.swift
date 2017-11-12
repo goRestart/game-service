@@ -1,15 +1,16 @@
 import FluentProvider
+import CoreService
 
 final class GameDiskModel: Model {
   
   let storage = Storage()
   
   var name: String
-  var manufacturerId: Identifier?
+  var manufacturerId: Fluent.Identifier?
   var releasedOn: Date
   
   init(name: String,
-       manufacturerId: Identifier?,
+       manufacturerId: Fluent.Identifier?,
        releasedOn: Date)
   {
     self.name = name
@@ -73,7 +74,7 @@ extension GameDiskModel: Preparation {
   static func prepare(_ database: Database) throws {
     try database.create(GameDiskModel.self) { builder in
       builder.id()
-      builder.string(Keys.name, unique: true)
+      builder.text(Keys.name, unique: true)
       builder.parent(ManufacturerDiskModel.self, optional: true, foreignIdKey: Keys.manufacturerId)
       builder.date(Keys.releasedOn)
     }
