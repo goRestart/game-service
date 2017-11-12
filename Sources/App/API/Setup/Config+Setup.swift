@@ -20,9 +20,9 @@ extension Config {
   
   private func setupPreparations() throws {
     preparations = [
+      ManufacturerDiskModel.self,
       GameConsoleDiskModel.self,
       GenreDiskModel.self,
-      ManufacturerDiskModel.self,
       AlternativeNameDiskModel.self,
       GameDiskModel.self,
       

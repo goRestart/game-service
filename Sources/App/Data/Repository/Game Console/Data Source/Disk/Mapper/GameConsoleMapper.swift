@@ -1,11 +1,22 @@
 import CoreService
 
 struct GameConsoleMapper: Mappable {
+  
+  private let manufacturerMapper: ManufacturerMapper
+  
+  init(manufacturerMapper: ManufacturerMapper) {
+    self.manufacturerMapper = manufacturerMapper
+  }
+  
   func map(_ from: GameConsoleDiskModel) throws -> GameConsole {
+    let manufacturer = try manufacturerMapper.map(
+      from.manufacturer()
+    )
     return GameConsole(
       identifier: Identifier(from.id!.string!),
       name: from.name,
-      alternativeName: from.alterantiveName
+      alternativeName: from.alterantiveName,
+      manufacturer: manufacturer
     )
   }
 }

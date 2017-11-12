@@ -8,7 +8,6 @@ extension Assembly {
   
   var gameViewMapper: GameViewMapper {
     return GameViewMapper(
-      manufacturerViewMapper: manufacturerViewMapper,
       gameConsoleViewMapper: gameConsoleViewMapper,
       genreViewMapper: genreViewMapper
     )
@@ -26,7 +25,6 @@ extension Assembly {
   
   var gameMapper: GameMapper {
     return GameMapper(
-      manufacturerMapper: manufacturerMapper,
       gameConsoleMapper: gameConsoleMapper,
       genreMapper: genreMapper
     )
@@ -48,12 +46,16 @@ extension Assembly {
   // MARK: - View
   
   var gameConsoleViewMapper: GameConsoleViewMapper {
-    return GameConsoleViewMapper()
+    return GameConsoleViewMapper(
+      manufacturerViewMapper: manufacturerViewMapper
+    )
   }
   
   // MARK: - Domain
   
   var gameConsoleMapper: GameConsoleMapper {
-    return GameConsoleMapper()
+    return GameConsoleMapper(
+      manufacturerMapper: manufacturerMapper
+    )
   }
 }

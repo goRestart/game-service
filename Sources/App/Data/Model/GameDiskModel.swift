@@ -6,28 +6,23 @@ final class GameDiskModel: Model {
   let storage = Storage()
   
   var name: String
-  var manufacturerId: Fluent.Identifier?
   var releasedOn: Date
   
   init(name: String,
-       manufacturerId: Fluent.Identifier?,
        releasedOn: Date)
   {
     self.name = name
-    self.manufacturerId = manufacturerId
     self.releasedOn = releasedOn
   }
   
   init(row: Row) throws {
     name = try row.get(Keys.name)
-    manufacturerId = try row.get(Keys.manufacturerId)
     releasedOn = try row.get(Keys.releasedOn)
   }
   
   func makeRow() throws -> Row {
     var row = Row()
     try row.set(Keys.name, name)
-    try row.set(Keys.manufacturerId, manufacturerId)
     try row.set(Keys.releasedOn, releasedOn)
     return row
   }
@@ -36,7 +31,6 @@ final class GameDiskModel: Model {
   
   struct Keys {
     static let name = "name"
-    static let manufacturerId = "manufacturer_id"
     static let releasedOn = "released_on"
   }
 }
@@ -51,10 +45,6 @@ extension GameDiskModel: Timestampable {
 // MARK: - Relations
 
 extension GameDiskModel {
-  func manufacturer() throws -> ManufacturerDiskModel? {
-    return try parent(id: manufacturerId).get()
-  }
-  
   var alternativeNames: Siblings<GameDiskModel, AlternativeNameDiskModel, Pivot<GameDiskModel, AlternativeNameDiskModel>> {
     return siblings()
   }
@@ -75,7 +65,6 @@ extension GameDiskModel: Preparation {
     try database.create(GameDiskModel.self) { builder in
       builder.id()
       builder.text(Keys.name, unique: true)
-      builder.parent(ManufacturerDiskModel.self, optional: true, foreignIdKey: Keys.manufacturerId)
       builder.date(Keys.releasedOn)
     }
   }
