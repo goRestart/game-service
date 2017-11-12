@@ -10,7 +10,8 @@ extension Assembly {
   
   private var searchController: SearchController {
     return SearchController(
-      searchGames: searchGames
+      searchGames: searchGames,
+      gameViewMapper: gameViewMapper
     )
   }
   
