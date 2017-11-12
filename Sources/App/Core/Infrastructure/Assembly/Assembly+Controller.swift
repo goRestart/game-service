@@ -9,7 +9,9 @@ extension Assembly {
   }
   
   private var searchController: SearchController {
-    return SearchController()
+    return SearchController(
+      searchGames: searchGames
+    )
   }
   
   private var gameConsoleController: GameConsoleController {
