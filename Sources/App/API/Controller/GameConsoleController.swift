@@ -8,25 +8,36 @@ private struct Parameter {
 struct GameConsoleController {
   
   private let getAllGameConsoles: GetAllGameConsoles
+  private let getGameConsoleById: GetGameConsoleById
   private let viewMapper: GameConsoleViewMapper
   
   init(getAllGameConsoles: GetAllGameConsoles,
+       getGameConsoleById: GetGameConsoleById,
        viewMapper: GameConsoleViewMapper)
   {
     self.getAllGameConsoles = getAllGameConsoles
+    self.getGameConsoleById = getGameConsoleById
     self.viewMapper = viewMapper
-  }
-  
-  func getById(_ request: Request) throws -> ResponseRepresentable {
-    guard let gameConsoleId = request.parameters[Parameter.identifier]?.string else {
-      return Response.missingParameters
-    }
-    return "ok \(gameConsoleId)"
   }
   
   func getAll() throws -> ResponseRepresentable {
     return try viewMapper.map(
       elements: try getAllGameConsoles.execute()
     ).makeJSON()
+  }
+  
+  func getById(_ request: Request) throws -> ResponseRepresentable {
+    guard let gameConsoleId = request.parameters[Parameter.identifier]?.string else {
+      return Response.missingParameters
+    }
+    do {
+      return try viewMapper.map(
+        try getGameConsoleById.execute(
+          with: Identifier(gameConsoleId)
+        )
+      ).makeJSON()
+    } catch GameConsoleError.notFound {
+      return Response.invalidGameConsoleId
+    }
   }
 }
