@@ -3,6 +3,7 @@ import Vapor
 private struct Endpoint {
   static let search = "/search"
   static let gameConsole = "/game-console"
+  static let gameConsoleById = "/game-console/:id"
 }
 
 struct GameRouteCollection: RouteCollection {
@@ -23,6 +24,9 @@ struct GameRouteCollection: RouteCollection {
     }
     builder.get(Endpoint.gameConsole) { _ in
       return try self.gameConsoleController.getAll()
+    }
+    builder.get(Endpoint.gameConsoleById) { request in
+      return try self.gameConsoleController.getById(request)
     }
   }
 }
