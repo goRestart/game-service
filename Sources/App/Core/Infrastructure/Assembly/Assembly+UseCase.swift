@@ -12,4 +12,10 @@ extension Assembly {
       gameConsoleRepository: gameConsoleRepository
     )
   }
+  
+  var getGameConsoleById: GetGameConsoleById {
+    return GetGameConsoleById(
+      gameConsoleRepository: gameConsoleRepository
+    )
+  }
 }

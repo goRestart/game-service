@@ -18,6 +18,7 @@ extension Assembly {
   private var gameConsoleController: GameConsoleController {
     return GameConsoleController(
       getAllGameConsoles: getAllGameConsoles,
+      getGameConsoleById: getGameConsoleById,
       viewMapper: gameConsoleViewMapper
     )
   }

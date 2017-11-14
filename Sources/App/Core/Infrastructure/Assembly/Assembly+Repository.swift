@@ -36,6 +36,7 @@ extension Assembly {
   private var gameConsoleDiskDataSource: GameConsoleDataSource {
     return GameConsoleDiskDataSource(
       getGameConsoleListTask: gameConsoleListTask,
+      getGameConsoleByIdTask: getGameConsoleByIdTask,
       gameConsoleMapper: gameConsoleMapper
     )
   }
@@ -44,5 +45,9 @@ extension Assembly {
   
   private var gameConsoleListTask: GetGameConsoleListTask {
     return GetGameConsoleListTask()
+  }
+  
+  private var getGameConsoleByIdTask: GetGameConsoleByIdTask {
+    return GetGameConsoleByIdTask()
   }
 }
