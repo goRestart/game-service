@@ -4,7 +4,7 @@ import Testing
 import Vapor
 @testable import App
 
-class GameConsoleControllerSpec: XCTestDatabasePreparations  {
+final class GameConsoleControllerSpec: XCTestDatabasePreparations  {
   
   override func setUp() {
     super.setUp()
