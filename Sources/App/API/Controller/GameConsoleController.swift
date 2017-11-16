@@ -27,13 +27,13 @@ struct GameConsoleController {
   }
   
   func getById(_ request: Request) throws -> ResponseRepresentable {
-    guard let gameConsoleId = request.parameters[Parameter.identifier]?.string else {
+    guard let gameConsoleId = request.parameters[Parameter.identifier]?.uuid else {
       return Response.missingParameters
     }
     do {
       return try viewMapper.map(
         try getGameConsoleById.execute(
-          with: Identifier(gameConsoleId)
+          with: Identifier(gameConsoleId.uuidString)
         )
       ).makeJSON()
     } catch GameConsoleError.notFound {
