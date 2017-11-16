@@ -2,5 +2,5 @@ import CoreService
 import App
 import Vapor
 
-let application = resolver.application
+let application = resolver.makeApplication()
 try application.run()

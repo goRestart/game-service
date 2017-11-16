@@ -1,4 +1,5 @@
 import Foundation
+import CoreService
 
 struct GameConsoleRepository {
   
@@ -6,6 +7,10 @@ struct GameConsoleRepository {
   
   init(diskDataSource: GameConsoleDataSource) {
     self.diskDataSource = diskDataSource
+  }
+  
+  func getBy(_ identifier: Identifier<GameConsole>) throws -> GameConsole {
+    return try diskDataSource.getBy(identifier)
   }
   
   func getAll() throws -> [GameConsole] {
