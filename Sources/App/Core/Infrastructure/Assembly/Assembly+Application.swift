@@ -2,13 +2,13 @@ import CoreService
 import Vapor
 
 extension Assembly {
-  public var application: Droplet {
-    let droplet =  try! Droplet(config)
+  public func makeApplication(with config: Config = resolver.defaultConfig) -> Droplet {
+    let droplet = try! Droplet(config)
     try! droplet.collection(gameRouteCollection)
     return droplet
   }
   
-  var config: Config {
+  public var defaultConfig: Config {
     let config = try! Config()
     try! config.setup()
     return config
