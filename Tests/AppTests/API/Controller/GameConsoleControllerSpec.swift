@@ -61,7 +61,6 @@ final class GameConsoleControllerSpec: XCTestDatabasePreparations  {
   }
 }
 
-
 // MARK: - Manifest
 
 extension GameConsoleControllerSpec {
