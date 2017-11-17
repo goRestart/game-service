@@ -28,7 +28,7 @@ struct GameController {
         )
       ).makeJSON()
     } catch GameError.notFound {
-      return Response.invalidGameConsoleId
+      return Response.invalidGameId
     }
   }
 }

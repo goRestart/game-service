@@ -33,7 +33,20 @@ final class GameControllerSpec: XCTestDatabasePreparations  {
     
     try droplet
       .testResponse(to: request)
-      .assertResponse(is: .invalidGameConsoleId)
+      .assertResponse(is: .invalidGameId)
+  }
+  
+  func test_should_return_ok_if_game_id_was_found() throws {
+    let gameId = try givenGame()
+    
+    let request = Request(
+      method: .get,
+      uri: "/\(gameId.value)"
+    )
+    
+    try droplet
+      .testResponse(to: request)
+      .assertStatus(is: .ok)
   }
 }
 
@@ -42,6 +55,7 @@ final class GameControllerSpec: XCTestDatabasePreparations  {
 extension GameControllerSpec {
   static let allTests = [
     ("test_should_return_missing_parameters_for_game_by_id_endpoint_if_uuid_is_wrong", test_should_return_missing_parameters_for_game_by_id_endpoint_if_uuid_is_wrong),
-    ("test_should_return_not_found_if_game_id_was_not_found", test_should_return_not_found_if_game_id_was_not_found)
+    ("test_should_return_not_found_if_game_id_was_not_found", test_should_return_not_found_if_game_id_was_not_found),
+    ("test_should_return_ok_if_game_id_was_found", test_should_return_ok_if_game_id_was_found)
   ]
 }

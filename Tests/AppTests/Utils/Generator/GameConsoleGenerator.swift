@@ -1,7 +1,7 @@
 import CoreService
 @testable import App
 
-func givenGameConsole(named: String = "Need for speed") throws -> Identifier<GameConsole> {
+func givenGameConsole(named: String = "Nintendo Switch") throws -> Identifier<GameConsole> {
   
   let gameConsole = GameConsoleDiskModel(
     name: named,
