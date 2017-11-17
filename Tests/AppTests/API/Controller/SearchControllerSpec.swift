@@ -35,6 +35,19 @@ final class SearchControllerSpec: XCTestDatabasePreparations  {
       .testResponse(to: request)
       .assertResponse(is: .missingParameters)
   }
+  
+  func todo_test_should_return_ok_if_game_was_found() throws {
+    try givenGame(named: "Mario Galaxy")
+    
+    let request = Request(
+      method: .get,
+      uri: "/search?query=mario galaxy"
+    )
+    
+    try droplet
+      .testResponse(to: request)
+      .assertStatus(is: .ok)
+  }
 }
 
 // MARK: - Manifest
