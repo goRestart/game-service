@@ -36,7 +36,7 @@ final class GameConsoleControllerSpec: XCTestDatabasePreparations  {
       .assertResponse(is: .missingParameters)
   }
   
-  func test_should_not_found_if_game_console_was_not_found() throws {
+  func test_should_return_not_found_if_game_console_id_was_not_found() throws {
     let request = Request(
       method: .get,
       uri: "/game-console/099EBEC1-93A4-4B9E-B738-938B2D996414"
@@ -67,7 +67,7 @@ extension GameConsoleControllerSpec {
   static let allTests = [
     ("test_all_game_console_endpoint_returns_ok", test_all_game_console_endpoint_returns_ok),
     ("test_should_return_missing_parameters_for_game_console_by_id_endpoint_if_uuid_is_wrong", test_should_return_missing_parameters_for_game_console_by_id_endpoint_if_uuid_is_wrong),
-    ("test_should_not_found_if_game_console_was_not_found", test_should_not_found_if_game_console_was_not_found),
+    ("test_should_return_not_found_if_game_console_id_was_not_found", test_should_return_not_found_if_game_console_id_was_not_found),
     ("test_should_return_ok_if_game_console_was_found", test_should_return_ok_if_game_console_was_found)
   ]
 }
