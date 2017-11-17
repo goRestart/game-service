@@ -17,7 +17,7 @@ struct GameConsoleDiskDataSource: GameConsoleDataSource {
   
   func getBy(_ identifier: Identifier<GameConsole>) throws -> GameConsole {
     return try gameConsoleMapper.map(
-      try getGameConsoleByIdTask.execute(identifier)
+      try getGameConsoleByIdTask.execute(with: identifier)
     )
   }
   
