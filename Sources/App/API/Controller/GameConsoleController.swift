@@ -26,7 +26,7 @@ struct GameConsoleController {
     ).makeJSON()
   }
   
-  func getById(_ request: Request) throws -> ResponseRepresentable {
+  func getById(with request: Request) throws -> ResponseRepresentable {
     guard let gameConsoleId = request.parameters[Parameter.identifier]?.uuid else {
       return Response.missingParameters
     }
