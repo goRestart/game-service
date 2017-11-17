@@ -11,12 +11,17 @@ extension Assembly {
   
   private var gameDiskDataSource: GameDiskDataSource {
     return GameDiskDataSource(
+      getGameByIdTask: getGameByIdTask,
       searchGamesTask: searchGamesTask,
       gameMapper: gameMapper
     )
   }
   
   // MARK - Tasks
+  
+  private var getGameByIdTask: GetGameByIdTask {
+    return GetGameByIdTask()
+  }
   
   private var searchGamesTask: SearchGamesTask {
     return SearchGamesTask()

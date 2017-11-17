@@ -9,29 +9,29 @@ struct GameConsoleController {
   
   private let getAllGameConsoles: GetAllGameConsoles
   private let getGameConsoleById: GetGameConsoleById
-  private let viewMapper: GameConsoleViewMapper
+  private let gameConsoleViewMapper: GameConsoleViewMapper
   
   init(getAllGameConsoles: GetAllGameConsoles,
        getGameConsoleById: GetGameConsoleById,
-       viewMapper: GameConsoleViewMapper)
+       gameConsoleViewMapper: GameConsoleViewMapper)
   {
     self.getAllGameConsoles = getAllGameConsoles
     self.getGameConsoleById = getGameConsoleById
-    self.viewMapper = viewMapper
+    self.gameConsoleViewMapper = gameConsoleViewMapper
   }
   
   func getAll() throws -> ResponseRepresentable {
-    return try viewMapper.map(
+    return try gameConsoleViewMapper.map(
       elements: try getAllGameConsoles.execute()
     ).makeJSON()
   }
   
-  func getById(_ request: Request) throws -> ResponseRepresentable {
+  func getById(with request: Request) throws -> ResponseRepresentable {
     guard let gameConsoleId = request.parameters[Parameter.identifier]?.uuid else {
       return Response.missingParameters
     }
     do {
-      return try viewMapper.map(
+      return try gameConsoleViewMapper.map(
         try getGameConsoleById.execute(
           with: Identifier(gameConsoleId.uuidString)
         )

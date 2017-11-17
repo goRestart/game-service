@@ -1,6 +1,12 @@
 import CoreService
 
 extension Assembly {
+  var getGameById: GetGameById {
+    return GetGameById(
+      gameRepository: gameRepository
+    )
+  }
+  
   var searchGames: SearchGames {
     return SearchGames(
       gameRepository: gameRepository
