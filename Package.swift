@@ -6,6 +6,7 @@ let package = Package(
   name: "game-service",
   products: [
     .library(name: "App", targets: ["App"]),
+    .library(name: "game-service-api", targets: ["game-service-api"]),
     .executable(name: "Run", targets: ["Run"])
   ],
   dependencies: [
@@ -22,6 +23,7 @@ let package = Package(
               "Resources",
               ]),
     .target(name: "Run", dependencies: ["App"]),
+    .target(name: "game-service-api", dependencies: ["App", "CoreService"]),
     .testTarget(name: "AppTests", dependencies: ["App", "Testing", "CoreTesting", "CoreService"])
   ]
 )
