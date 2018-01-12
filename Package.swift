@@ -13,8 +13,9 @@ let package = Package(
     .package(url: "https://github.com/vapor/vapor.git", .upToNextMajor(from: "2.3.0")),
     .package(url: "https://github.com/vapor/fluent-provider.git", .upToNextMajor(from: "1.3.0")),
     .package(url: "https://github.com/vapor-community/postgresql-provider.git", .upToNextMajor(from: "2.1.0")),
-    .package(url: "https://github.com/goRestart/core-service.git", .branch("develop"))
-    ],
+    .package(url: "https://github.com/goRestart/core-service.git", .branch("develop")),
+    
+  ],
   targets: [
     .target(name: "App", dependencies: ["Vapor", "FluentProvider", "PostgreSQLProvider", "CoreService"],
             exclude: [
@@ -23,7 +24,7 @@ let package = Package(
               "Resources",
               ]),
     .target(name: "Run", dependencies: ["App"]),
-    .target(name: "game-service-api", dependencies: ["App", "CoreService"]),
+    .target(name: "game-service-api", dependencies: ["App", "CoreService", "game-service-api"]),
     .testTarget(name: "AppTests", dependencies: ["App", "Testing", "CoreTesting", "CoreService"])
   ]
 )
