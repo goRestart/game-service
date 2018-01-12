@@ -13,7 +13,7 @@ struct GameConsoleMapper: Mappable {
       from.manufacturer()
     )
     return GameConsole(
-      identifier: Identifier(from.id!.string!),
+      id: Identifier(from.id!.string!),
       name: from.name,
       alternativeName: from.alterantiveName,
       manufacturer: manufacturer

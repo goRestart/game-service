@@ -1,13 +1,13 @@
 import CoreService
 
-public struct Genre {
-  public let identifier: Identifier<Genre>
+public struct Genre: Codable {
+  public let id: Identifier<Genre>
   public let name: String
   
-  public init(identifier: Identifier<Genre>,
+  public init(id: Identifier<Genre>,
        name: String)
   {
-    self.identifier = identifier
+    self.id = id
     self.name = name
   }
 }

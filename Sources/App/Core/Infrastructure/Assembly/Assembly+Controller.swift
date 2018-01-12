@@ -11,23 +11,20 @@ extension Assembly {
   
   private var gameController: GameController {
     return GameController(
-      getGameById: getGameById,
-      gameViewMapper: gameViewMapper
+      getGameById: getGameById
     )
   }
   
   private var searchController: SearchController {
     return SearchController(
-      searchGames: searchGames,
-      gameViewMapper: gameViewMapper
+      searchGames: searchGames
     )
   }
   
   private var gameConsoleController: GameConsoleController {
     return GameConsoleController(
       getAllGameConsoles: getAllGameConsoles,
-      getGameConsoleById: getGameConsoleById,
-      gameConsoleViewMapper: gameConsoleViewMapper
+      getGameConsoleById: getGameConsoleById
     )
   }
 }

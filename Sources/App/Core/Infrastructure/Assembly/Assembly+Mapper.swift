@@ -3,24 +3,7 @@ import CoreService
 // MARK: - Game
 
 extension Assembly {
-  
-  // MARK: - View
-  
-  var gameViewMapper: GameViewMapper {
-    return GameViewMapper(
-      gameConsoleViewMapper: gameConsoleViewMapper,
-      genreViewMapper: genreViewMapper
-    )
-  }
-  
-  private var manufacturerViewMapper: ManufacturerViewMapper {
-    return ManufacturerViewMapper()
-  }
-  
-  private var genreViewMapper: GenreViewMapper {
-    return GenreViewMapper()
-  }
-  
+
   // MARK: - Domain
   
   var gameMapper: GameMapper {
@@ -42,14 +25,6 @@ extension Assembly {
 // MARK: - Game console
 
 extension Assembly {
-  
-  // MARK: - View
-  
-  var gameConsoleViewMapper: GameConsoleViewMapper {
-    return GameConsoleViewMapper(
-      manufacturerViewMapper: manufacturerViewMapper
-    )
-  }
   
   // MARK: - Domain
   

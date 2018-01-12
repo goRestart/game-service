@@ -21,7 +21,7 @@ struct GameMapper: Mappable {
       elements: try from.genres.all()
     )
     return Game(
-      identifier: Identifier(from.id!.string!),
+      id: Identifier(from.id!.string!),
       name: from.name,
       alternativeNames: alternativeNames,
       gameConsoles: gameConsoles,

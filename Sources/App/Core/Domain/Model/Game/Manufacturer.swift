@@ -1,13 +1,13 @@
 import CoreService
 
-public struct Manufacturer {
-  public let identifier: Identifier<Manufacturer>
+public struct Manufacturer: Codable {
+  public let id: Identifier<Manufacturer>
   public let name: String
   
-  public init(identifier: Identifier<Manufacturer>,
+  public init(id: Identifier<Manufacturer>,
               name: String)
   {
-    self.identifier = identifier
+    self.id = id
     self.name = name
   }
 }

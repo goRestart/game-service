@@ -8,13 +8,9 @@ private struct Parameter {
 struct SearchController {
   
   private let searchGames: SearchGames
-  private let gameViewMapper: GameViewMapper
-  
-  init(searchGames: SearchGames,
-       gameViewMapper: GameViewMapper)
-  {
+ 
+  init(searchGames: SearchGames) {
     self.searchGames = searchGames
-    self.gameViewMapper = gameViewMapper
   }
   
   func find(with request: Request) throws -> ResponseRepresentable {
@@ -24,8 +20,8 @@ struct SearchController {
     let searchQuery = SearchQuery(
       query: query
     )
-    return try gameViewMapper.map(
-      elements: try searchGames.execute(with: searchQuery)
-    ).makeJSON()
+    return try searchGames
+      .execute(with: searchQuery)
+      .makeResponse()
   }
 }

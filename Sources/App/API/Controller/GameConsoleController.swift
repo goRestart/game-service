@@ -9,21 +9,16 @@ struct GameConsoleController {
   
   private let getAllGameConsoles: GetAllGameConsoles
   private let getGameConsoleById: GetGameConsoleById
-  private let gameConsoleViewMapper: GameConsoleViewMapper
-  
+ 
   init(getAllGameConsoles: GetAllGameConsoles,
-       getGameConsoleById: GetGameConsoleById,
-       gameConsoleViewMapper: GameConsoleViewMapper)
+       getGameConsoleById: GetGameConsoleById)
   {
     self.getAllGameConsoles = getAllGameConsoles
     self.getGameConsoleById = getGameConsoleById
-    self.gameConsoleViewMapper = gameConsoleViewMapper
   }
   
   func getAll() throws -> ResponseRepresentable {
-    return try gameConsoleViewMapper.map(
-      elements: try getAllGameConsoles.execute()
-    ).makeJSON()
+    return try getAllGameConsoles.execute().makeResponse()
   }
   
   func getById(with request: Request) throws -> ResponseRepresentable {
@@ -31,11 +26,9 @@ struct GameConsoleController {
       return Response.missingParameters
     }
     do {
-      return try gameConsoleViewMapper.map(
-        try getGameConsoleById.execute(
-          with: Identifier(gameConsoleId.uuidString)
-        )
-      ).makeJSON()
+      return try getGameConsoleById.execute(
+        with: Identifier(gameConsoleId.uuidString)
+      ).makeResponse()
     } catch GameConsoleError.notFound {
       return Response.invalidGameConsoleId
     }

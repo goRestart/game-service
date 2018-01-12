@@ -8,13 +8,9 @@ private struct Parameter {
 struct GameController {
  
   private let getGameById: GetGameById
-  private let gameViewMapper: GameViewMapper
-  
-  init(getGameById: GetGameById,
-       gameViewMapper: GameViewMapper)
-  {
+
+  init(getGameById: GetGameById) {
     self.getGameById = getGameById
-    self.gameViewMapper = gameViewMapper
   }
   
   func getById(with request: Request) throws -> ResponseRepresentable {
@@ -22,11 +18,9 @@ struct GameController {
       return Response.missingParameters
     }
     do {
-      return try gameViewMapper.map(
-        try getGameById.execute(
-          with: Identifier(gameId.uuidString)
-        )
-      ).makeJSON()
+      return try getGameById.execute(
+        with: Identifier(gameId.uuidString)
+      ).makeResponse()
     } catch GameError.notFound {
       return Response.invalidGameId
     }
