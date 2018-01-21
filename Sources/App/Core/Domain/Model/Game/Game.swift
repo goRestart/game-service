@@ -8,7 +8,7 @@ public struct Game: Codable {
   public let gameConsoles: [GameConsole]
   public let genres: [Genre]
   public let releasedOn: Date
-
+ 
   public init(id: Identifier<Game>,
        name: String,
        alternativeNames: [String]?,

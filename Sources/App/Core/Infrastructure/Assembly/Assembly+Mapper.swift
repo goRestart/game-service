@@ -22,6 +22,17 @@ extension Assembly {
   }
 }
 
+// MARK: - Game search
+
+extension Assembly: GameToSearchResultMapperProvider {
+
+  // MARK: - Domain
+
+  func mapper(with query: String) -> GameToSearchResultMapper {
+    return GameToSearchResultMapper(query: query)
+  }
+}
+
 // MARK: - Game console
 
 extension Assembly {

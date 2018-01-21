@@ -9,7 +9,8 @@ extension Assembly {
   
   var searchGames: SearchGames {
     return SearchGames(
-      gameRepository: gameRepository
+      gameRepository: gameRepository,
+      gameToSearchResultMapperProvider: self
     )
   }
   
